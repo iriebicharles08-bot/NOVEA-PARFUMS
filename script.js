@@ -143,6 +143,21 @@ if (enterSite) {
     });
 
 }
+function playHeroNoveaReveal() {
+
+    const letters = document.querySelectorAll(".hero-novea span");
+
+    letters.forEach((letter, index) => {
+
+        setTimeout(() => {
+
+            letter.classList.add("show");
+
+        }, index * 120);
+
+    });
+
+}
 
 
 /* =====================================================
