@@ -22,6 +22,7 @@
     >
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="nv-hero.css">
 </head>
 
 <body>
@@ -77,103 +78,96 @@
          NAVIGATION
     ================================================= -->
 
-    <header class="navbar">
+   <!-- ===== EN-TÊTE NØVÉA V4 ===== -->
+<header class="nv-bar">
+    <span></span>
+    <a href="#home" class="nv-logo">NØVÉA</a>
+    <button type="button" class="nv-menu-btn" id="nvMenuOpen" aria-expanded="false" aria-controls="nvMenu">MENU</button>
+</header>
+<script>
+(function () {
+  var z = document.querySelector(".nv-zero");
+  if (!z || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-        <div class="novea-intro-logo">
-            <span>NØVÉA</span>
-        </div>
+  // Souris (ordinateur seulement)
+  if (window.matchMedia("(hover: hover)").matches) {
+    window.addEventListener("pointermove", function (e) {
+      var x = (e.clientX / window.innerWidth - 0.5) * 28;
+      var y = (e.clientY / window.innerHeight - 0.5) * 28;
+      z.style.setProperty("--px", x + "px");
+      z.style.setProperty("--py", y + "px");
+    }, { passive: true });
+  }
 
-        <a href="#home" class="logo"></a>
+  // Défilement : le Ø remonte doucement
+  window.addEventListener("scroll", function () {
+    z.style.setProperty("--sy", (-window.scrollY * 0.12) + "px");
+  }, { passive: true });
+})();
+</script>
 
-        <nav>
+<div class="nv-menu" id="nvMenu" aria-label="Navigation">
+    <button type="button" class="nv-menu-close" id="nvMenuClose">FERMER ✕</button>
+    <a href="#story">L'histoire</a>
+    <a href="#collection">Parfums</a>
+    <a href="#test">Signature</a>
+    <a href="#contact">Contact</a>
+</div>
 
-            <a href="#story">L'histoire</a>
-            <a href="#collection">Parfums</a>
-            <a href="#test">Signature</a>
-            <a href="#contact">Contact</a>
+<main>
 
-        </nav>
+<section class="nv-hero" id="home">
 
-        <span class="nav-number">01—05</span>
+    <div class="nv-haze"></div>
 
-    </header>
+    <svg class="nv-zero" viewBox="0 0 400 500" aria-hidden="true">
+        <ellipse cx="200" cy="250" rx="150" ry="210"></ellipse>
+        <line x1="335" y1="55" x2="65" y2="445" pathLength="1"></line>
+    </svg>
 
+    <div class="nv-center">
+        <span class="nv-eyebrow">MAISON DES PARFUMS · ABIDJAN · 2026</span>
 
-    <main>
+        <h1 class="nv-title">
+            Une trace
+            <em>après vous.</em>
+        </h1>
 
+        <span class="nv-rule"></span>
 
-        <!-- =============================================
-             HERO
-        ============================================= -->
+        <p class="nv-sub">
+            Des fragrances pensées comme des souvenirs :
+            invisibles, intimes, persistants.
+        </p>
+    </div>
 
-        <section class="hero" id="home">
+    <div class="nv-bottom">
+        <a href="#collection" class="nv-cta">ENTRER DANS LE SILLAGE</a>
+        <span class="nv-scroll">SCROLL</span>
+    </div>
 
-            <div class="hero-image"></div>
-
-            <div class="hero-overlay"></div>
-
-            <div class="hero-novea">
-                <span>N</span>
-                <span>Ø</span>
-                <span>V</span>
-                <span>É</span>
-                <span>A</span>
-            </div>
-
-            <div class="hero-content reveal">
-
-                <span class="eyebrow light">
-                    MAISON DES PARFUMS · ABIDJAN · 2026
-                </span>
-
-                <h2>
-                    Une trace
-                    <em>après vous.</em>
-                </h2>
-
-                <p>
-                    Des fragrances pensées comme des souvenirs :
-                    invisibles, intimes, persistants.
-                </p>
-
-               <a href="#collection" class="hero-link">
-    ENTRER DANS LE SILLAGE
-</a>
-
-            </div>
-
-        </section>
-        <!-- =============================================
-             RESPIRATION — TRANSITION CINÉMATOGRAPHIQUE
-        ============================================= -->
-
-        <section class="scent-breath" id="scentBreath">
-
-            <div class="scent-breath-inner">
-
-                <span class="scent-breath-number">
-                    01 / NØVÉA
-                </span>
-
-                <p class="scent-breath-line line-one">
-                    Certaines choses
-                </p>
-
-                <p class="scent-breath-line line-two">
-                    ne se racontent pas.
-                </p>
-
-                <div class="scent-breath-mark">
-                    <span></span>
-                </div>
-
-                <p class="scent-breath-final">
-                    Elles se ressentent.
-                </p>
-
-            </div>
-
-        </section>
+</section>
+<script>
+(function () {
+  var m = document.getElementById("nvMenu"),
+      o = document.getElementById("nvMenuOpen"),
+      c = document.getElementById("nvMenuClose");
+  if (!m || !o || !c) return;
+  function set(v) {
+    m.classList.toggle("is-open", v);
+    o.setAttribute("aria-expanded", v);
+    document.body.style.overflow = v ? "hidden" : "";
+  }
+  o.addEventListener("click", function () { set(true); });
+  c.addEventListener("click", function () { set(false); });
+  m.querySelectorAll("a").forEach(function (a) {
+    a.addEventListener("click", function () { set(false); });
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") set(false);
+  });
+})();
+</script>
 
 
         <!-- =============================================

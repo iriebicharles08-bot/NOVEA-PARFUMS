@@ -20454,3 +20454,148 @@ letter-spacing: -0.03em;
     }
 
 }
+/* =====================================================
+   NØVÉA — ENTÊTE V3 : un héros, un rythme (tout en bas)
+===================================================== */
+
+:root {
+    --ink: #3A281B;
+    --champagne: #C9A97C;
+    --ease-soft: cubic-bezier(.22,.61,.36,1);
+}
+
+/* 1. BARRE : transparente, centrée */
+.navbar {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: auto;
+    padding: 22px 20px 0;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.navbar nav {
+    display: flex;
+    justify-content: center;
+    gap: clamp(16px, 3vw, 34px);
+    margin: 0;
+}
+
+.navbar nav a {
+    font-size: .62rem;
+    letter-spacing: .22em;
+    opacity: .85;
+}
+
+.nav-number { display: none; }
+
+/* 2. HERO : bloc centré au milieu, bouton en bas */
+.hero {
+    position: relative;
+    min-height: 100svh;
+    padding: 120px 24px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-content {
+    flex: 1;
+    width: 100%;
+    max-width: 760px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(14px, 2.6vh, 26px);
+    animation: heroFade 1.2s var(--ease-soft) both;
+}
+
+/* Signature : NØVÉA devient discret et élégant */
+.hero-novea {
+    justify-content: center !important;
+    top: 0 !important; left: 0 !important;
+    margin: 0;
+    font-size: clamp(2.6rem, 8vw, 5.2rem);
+    letter-spacing: .12em;
+    opacity: .9;
+}
+
+/* Petite mention : plus lisible */
+.eyebrow {
+    display: block;
+    font-size: .68rem;
+    letter-spacing: .3em;
+    opacity: .85;
+}
+
+/* Message principal : la vedette */
+.hero h2 {
+    margin: clamp(10px, 2vh, 22px) 0 0;
+    font-size: clamp(3.4rem, 10vw, 7.5rem);
+    line-height: .98;
+    text-align: center;
+    word-spacing: .1em;
+}
+
+/* Filet doré entre titre et sous-titre */
+.hero h2::after {
+    content: "";
+    display: block;
+    width: 64px;
+    height: 1px;
+    margin: clamp(18px, 3vh, 30px) auto 0;
+    background: var(--champagne);
+}
+
+/* Sous-titre : plus grand, plus foncé */
+.hero-content > p {
+    max-width: 30em;
+    margin: 0 auto;
+    text-align: center;
+    text-wrap: balance;
+    font-size: clamp(1rem, 2.6vw, 1.2rem);
+    line-height: 1.6;
+    color: var(--ink);
+    opacity: .8;
+}
+
+/* Bouton : centré en bas, avec de l'air */
+.hero-link {
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    align-self: center;
+}
+
+/* 3. Retirer le trait diagonal parasite (s'il vient d'un ::before) */
+.hero::before { display: none; }
+
+@keyframes heroFade {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-content { animation: none; }
+}
+
+/* 4. GRAND ÉCRAN : liens sur une ligne, logo à gauche */
+@media (min-width: 801px) {
+    .navbar {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 26px clamp(24px, 6vw, 90px) 0;
+    }
+}
